@@ -9,17 +9,43 @@
     };
   };
 
-  outputs = {self, nixpkgs, home-manager, ...}@inputs: {
+  outputs = {nixpkgs, home-manager, ...}@inputs: {
     nixosConfigurations = {
-      nixos = nixpkgs.lib.nixosSystem {
+      theo-desktop = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
           ./system/configuration.nix
+          ./system/mount-hdd.nix
           home-manager.nixosModules.home-manager
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
             home-manager.users.theo = import ./user/home.nix;        
+          }
+        ];
+      };
+    };
+    homeConfigurations = {
+      "dotfiles-linux" = home-manager.lib.homeManagerConfiguration {
+        pkgs = nixpkgs.legacyPackages.x86_64-linux;
+        modules = [ ./user/home.nix
+          {
+            home = { # Change "guest" on both lines to the output of "whoami"
+              username = "guest";
+              homeDirectory = "/home/guest";
+            };
+          }
+        ];
+      };
+      "dotfiles-mac" = home-manager.lib.homeManagerConfiguration {
+        pkgs = nixpkgs.legacyPackages.aarch64-darwin;
+        modules = [
+          ./user/home.nix
+          {
+            home = { # Change "guest" on both lines to the output of "whoami"
+              username = "guest";
+              homeDirectory = "/Users/guest";
+            };
           }
         ];
       };

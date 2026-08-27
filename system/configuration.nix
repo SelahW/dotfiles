@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{config, pkgs, ...}: {
+{config, lib, pkgs, ...}: {
   imports = [
   ./hardware-configuration.nix
   ];
@@ -59,7 +59,7 @@
   };
 
   # Networking
-  networking.hostName = "nixos"; # Define your hostname.
+  networking.hostName = "theo-desktop";
   networking.networkmanager.enable = true;
 
   # Locale and time zone.
@@ -97,11 +97,11 @@
   nixpkgs.config.allowUnfree = true;
 
   # System Packages
-  environment.systemPackages = with pkgs; [wget git ghostty firefox equibop scrot xclip feh xinit gh xscreensaver];
+  environment.systemPackages = with pkgs; [wget git ghostty firefox equibop scrot xclip feh xinit gh xscreensaver spotify vlc];
 
   # Steam
   programs.steam.enable = true;
-
+  
   # ZSH default
   programs.zsh.enable = true;
   users.defaultUserShell = pkgs.zsh;

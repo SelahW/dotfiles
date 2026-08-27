@@ -35,6 +35,7 @@ vim.keymap.set("n", "<C-j>", function() harpoon:list():next() end)
 -- LSP Setup
 vim.lsp.enable('hls')
 vim.lsp.enable('luals')
+vim.lsp.enable('nixd')
 
 -- Completion
 local cmp = require('cmp')
