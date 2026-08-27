@@ -2,6 +2,7 @@ import XMonad
 
 import XMonad.Util.EZConfig
 import XMonad.Util.SpawnOnce (spawnOnce)
+import XMonad.Util.Cursor (setDefaultCursor)
 import XMonad.Operations
 import XMonad.Layout.Tabbed
 import XMonad.Actions.PhysicalScreens
@@ -14,6 +15,7 @@ import XMonad.Hooks.ManageDocks (avoidStruts)
 import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.StatusBar
 import XMonad.Hooks.StatusBar.PP
+import XMonad.Actions.GridSelect
 import qualified XMonad.StackSet as W
 
 fixMonitors :: X ()
@@ -24,7 +26,7 @@ main :: IO ()
 main = xmonad $ ewmh def
     { modMask = mod4Mask -- Rebind Mod to Super
     , focusFollowsMouse = False
-    , startupHook = fixMonitors
+    , startupHook = fixMonitors >> setDefaultCursor xC_left_ptr
     , layoutHook = myLayout
     } `additionalKeysP`
     [ ("M-<Delete>", spawn "xscreensaver-command -lock")
@@ -37,6 +39,7 @@ main = xmonad $ ewmh def
     , ("M-d",        spawn "rofi -show drun")
     , ("M-p",        unGrab *> spawn "scrot -s")
     , ("M-b",        spawn "firefox")
+    , ("M-g",        goToSelected def)
     , ("M-S-t",      withFocused $ windows . W.sink)
     , ("M-w",        screenWorkspace 1 >>= flip whenJust (windows . W.view))
     , ("M-e",        screenWorkspace 0 >>= flip whenJust (windows . W.view))

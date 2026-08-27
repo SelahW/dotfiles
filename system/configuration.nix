@@ -9,6 +9,12 @@
 
   # Settings
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  
+  # Graphics
+  hardware.graphics = {
+    enable = true;
+    enable32Bit = true;
+  };
 
   # DBus
   services.dbus.enable = true;
@@ -31,14 +37,17 @@
     };
   };
 
-  # XMonad and Ly
+  # XMonad, Ly, xscreensaver
   services = {
     xserver = {
       enable = true;
       windowManager.xmonad.enable = true;
     };
     displayManager.ly.enable = true;
+    xscreensaver.enable = true;
+    libinput.enable = true;
   };
+  security.pam.services.xscreensaver.enable = true;
 
   # Bootloader.
   boot.loader = {
@@ -88,7 +97,10 @@
   nixpkgs.config.allowUnfree = true;
 
   # System Packages
-  environment.systemPackages = with pkgs; [wget git ghostty firefox equibop scrot xclip feh xinit gh];
+  environment.systemPackages = with pkgs; [wget git ghostty firefox equibop scrot xclip feh xinit gh xscreensaver];
+
+  # Steam
+  programs.steam.enable = true;
 
   # ZSH default
   programs.zsh.enable = true;
