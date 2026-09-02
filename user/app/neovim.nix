@@ -6,7 +6,7 @@
     vimAlias = true;
     extraPackages = with pkgs; [
       nixd
-      nixfmt-rfc-style
+      nixfmt
       haskell-language-server
       lua-language-server
     ];

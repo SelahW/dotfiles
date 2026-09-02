@@ -14,6 +14,7 @@
       cursor-style = "block";
       cursor-style-blink = false;
       shell-integration-features = "no-cursor";
+      term = "xterm-256color";
       window-decoration = false;
     };
   };

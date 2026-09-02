@@ -10,32 +10,36 @@
   # Settings
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   
-  # Graphics
-  hardware.graphics = {
+  # Graphics & OTD
+  hardware = {
+    graphics = {
+      enable = true;
+      enable32Bit = true;
+    };
+    opentabletdriver.enable = true;
+    uinput.enable = true;
+  };
+
+  # Audio
+  security.rtkit.enable = true;
+  services.pipewire = {
     enable = true;
-    enable32Bit = true;
+    alsa.enable = true;
+    alsa.support32Bit = true;
+    pulse.enable = true;
+    jack.enable = true;
+  };
+  # XDG Portal
+  xdg.portal = {
+    enable = true;
+    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+    config.common.default = "*";
   };
 
   # DBus
   services.dbus.enable = true;
   programs.dconf.enable = true;
 
-  # Fonts
-  fonts = {
-    packages = with pkgs; [
-      jetbrains-mono
-      nerd-fonts.jetbrains-mono
-      nerd-fonts.iosevka
-      nerd-fonts.iosevka-term
-      nerd-fonts.go-mono
-    ];
-    fontconfig = {
-      enable = true;
-      defaultFonts = {
-        monospace = [ "IosevkaTerm Nerd Font Medium" ];
-      };
-    };
-  };
 
   # XMonad, Ly, xscreensaver
   services = {
@@ -57,6 +61,7 @@
     };
     efi.canTouchEfiVariables = true;
   };
+  boot.kernelModules = [ "uinput" ];
 
   # Networking
   networking.hostName = "theo-desktop";
@@ -88,8 +93,8 @@
     "theo" = {
       isNormalUser = true;
       description = "Theo Koss";
-      extraGroups = [ "networkmanager" "wheel" ];
-      packages = with pkgs; [];
+      extraGroups = ["networkmanager" "wheel" "input" "uinput"];
+      packages = [];
     };
   };
 
@@ -97,17 +102,11 @@
   nixpkgs.config.allowUnfree = true;
 
   # System Packages
-  environment.systemPackages = with pkgs; [wget git ghostty firefox equibop scrot xclip feh xinit gh xscreensaver spotify vlc];
-
-  # Steam
-  programs.steam.enable = true;
+  environment.systemPackages = with pkgs; [xinit xscreensaver];
   
   # ZSH default
   programs.zsh.enable = true;
   users.defaultUserShell = pkgs.zsh;
-
-  # Enable the OpenSSH daemon.
-  services.openssh.enable = true;
 
   # See man configuration.nix or https://nixos.org/nixos/options.html
   system.stateVersion = "26.05";

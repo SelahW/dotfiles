@@ -28,26 +28,11 @@
     homeConfigurations = {
       "dotfiles-linux" = home-manager.lib.homeManagerConfiguration {
         pkgs = nixpkgs.legacyPackages.x86_64-linux;
-        modules = [ ./user/home.nix
-          {
-            home = { # Change "guest" on both lines to the output of "whoami"
-              username = "guest";
-              homeDirectory = "/home/guest";
-            };
-          }
-        ];
+        modules = [./user/home.nix];
       };
       "dotfiles-mac" = home-manager.lib.homeManagerConfiguration {
         pkgs = nixpkgs.legacyPackages.aarch64-darwin;
-        modules = [
-          ./user/home.nix
-          {
-            home = { # Change "guest" on both lines to the output of "whoami"
-              username = "guest";
-              homeDirectory = "/Users/guest";
-            };
-          }
-        ];
+        modules = [./user/home.nix];
       };
     };
   };

@@ -18,6 +18,7 @@ import XMonad.Hooks.StatusBar.PP
 import XMonad.Actions.GridSelect
 import qualified XMonad.StackSet as W
 
+-- Warning to others: If you have monitors plugged into DP-1 and DP-2 this can mess them up. Change if needed!
 fixMonitors :: X ()
 fixMonitors = do
     spawnOnce "xrandr --output DP-2 --mode 1920x1080 --rate 165 --output DP-1 --mode 1920x1080 --rate 240 --right-of DP-2 --primary"
@@ -37,7 +38,7 @@ main = xmonad $ ewmh def
     , ("M-<F12>",    spawn "if type xmonad; then xmonad --recompile && xmonad --restart; else xmessage xmonad not in \\$PATH: \"$PATH\"; fi")
     , ("M-t",        spawn "ghostty")
     , ("M-d",        spawn "rofi -show drun")
-    , ("M-p",        unGrab *> spawn "scrot -s")
+    , ("M-p",        unGrab *> spawn "scrot -s '/home/theo/Screenshots/%m-%d-%T-ss.png'")
     , ("M-b",        spawn "firefox")
     , ("M-g",        goToSelected def)
     , ("M-S-t",      withFocused $ windows . W.sink)
