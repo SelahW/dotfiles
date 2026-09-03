@@ -25,6 +25,8 @@
       ghc
       btop
       fastfetch
+      ripgrep
+      fd
       # Other apps, you maybe want these
       firefox
       equibop
