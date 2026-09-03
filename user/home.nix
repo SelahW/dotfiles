@@ -7,6 +7,10 @@
     ./app/ncspot.nix
     ./app/xmonad.nix
   ];
+
+  # Allow unfree packages
+  nixpkgs.config.allowUnfree = true;
+  
   targets.genericLinux.enable = true;
   home = {
     packages = with pkgs; [
