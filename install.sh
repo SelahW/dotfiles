@@ -5,13 +5,13 @@ echo "======================================="
 echo "==Dotfiles Configuration Bootstrapper=="
 echo "======================================="
 echo ""
-USERNAME=$(logname)
-echo "Detected system username: [$(logname)]"
-if [[ "$(uname -m)" == "x86_64" ]]; then
+USERNAME=$(logname 2>/dev/null || echo ${USER:-$(whoami)})
+echo "Detected system username: [$USERNAME]"
+if [[ "$(uname)" == "Linux" ]]; then
     ARCH="x86_64-linux"
     HOMEDIR="home/"
     COMMAND="nix run github:nix-community/home-manager -- switch --flake .#dotfiles-linux"
-elif [[ "$(uname -m)" == "aarch64" ]]; then
+elif [[ "$(uname)" == "Darwin" ]]; then
     ARCH="aarch64-darwin"
     HOMEDIR="Users/"
     COMMAND="nix run github:nix-community/home-manager -- switch --flake .#dotfiles-mac"
