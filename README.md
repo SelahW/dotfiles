@@ -2,6 +2,7 @@
 Managed by [nix flakes](https://wiki.nixos.org/wiki/Flakes).
 
 ## File Tree:
+```
 dotfiles/
 ├── system/
 │   ├── configuration.nix
@@ -29,7 +30,7 @@ dotfiles/
 ├── install.sh
 ├── flake.lock
 └── flake.nix
-
+```
 ## Installation steps:
 ### 1. Clone repo
 ```bash
