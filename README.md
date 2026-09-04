@@ -1,5 +1,35 @@
 # My Dotfiles and System config
 Managed by [nix flakes](https://wiki.nixos.org/wiki/Flakes).
+
+## File Tree:
+dotfiles/
+├── system/
+│   ├── configuration.nix
+│   ├── hardware-configuration.nix
+│   └── mount-hdd.nix
+├── user/
+│   ├── app/
+│   │   ├── xmonad/
+│   │   │   ├── xmobar.hs
+│   │   │   └── xmonad.hs
+│   │   ├── nvim/
+│   │   │   ├── ...
+│   │   │   └── init.lua
+│   │   ├── ghostty.nix
+│   │   ├── ncspot.nix
+│   │   ├── neovim.nix
+│   │   ├── rofi.nix
+│   │   ├── starship.toml
+│   │   ├── xmobar.nix
+│   │   ├── xmonad.nix
+│   │   └── zsh.nix
+│   ├── home.nix
+│   └── identity.nix
+├── README.md
+├── install.sh
+├── flake.lock
+└── flake.nix
+
 ## Installation steps:
 ### 1. Clone repo
 ```bash

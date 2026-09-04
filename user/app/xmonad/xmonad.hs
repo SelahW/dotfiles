@@ -24,7 +24,13 @@ fixMonitors = do
     spawnOnce "xrandr --output DP-2 --mode 1920x1080 --rate 165 --output DP-1 --mode 1920x1080 --rate 240 --right-of DP-2 --primary"
 
 main :: IO ()
-main = xmonad $ ewmh def
+main = xmonad
+     . ewmhFullscreen
+     . ewmh
+     . withEasySB (statusBarProp "xmobar" (pure def)) defToggleStrutsKey
+     $ myConfig
+
+myConfig = def
     { modMask = mod4Mask -- Rebind Mod to Super
     , focusFollowsMouse = False
     , startupHook = fixMonitors >> setDefaultCursor xC_left_ptr

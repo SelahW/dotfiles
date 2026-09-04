@@ -21,29 +21,16 @@
     uinput.enable = true;
   };
 
-  # Audio
-  security.rtkit.enable = true;
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
-    jack.enable = true;
-  };
-  # XDG Portal
-  xdg.portal = {
-    enable = true;
-    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
-    config.common.default = "*";
-  };
-
-  # DBus
-  services.dbus.enable = true;
-  programs.dconf.enable = true;
-
-
-  # XMonad, Ly, xscreensaver
   services = {
+    # Audio  
+    pipewire = {
+      enable = true;
+      alsa.enable = true;
+      alsa.support32Bit = true;
+      pulse.enable = true;
+      jack.enable = true;
+    };
+    # XMonad, Ly, xscreensaver
     xserver = {
       enable = true;
       windowManager.xmonad.enable = true;
@@ -51,8 +38,22 @@
     displayManager.ly.enable = true;
     xscreensaver.enable = true;
     libinput.enable = true;
+    # Keyboard layout
+    xserver.xkb = {
+      layout = "us";
+      variant = "";
+    };
   };
+
+  # XDG Portal
+  xdg.portal = {
+    enable = true;
+    config.common.default = [ "gtk" ];
+    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+  };
+
   security.pam.services.xscreensaver.enable = true;
+  security.rtkit.enable = true;
 
   # Bootloader.
   boot.loader = {
@@ -83,12 +84,6 @@
     LC_TIME = "en_US.UTF-8";
   };
 
-  # Keyboard layout
-  services.xserver.xkb = {
-    layout = "us";
-    variant = "";
-  };
-
  # User account
   users.users = {
     "theo" = {
@@ -102,8 +97,13 @@
   # System Packages
   environment.systemPackages = with pkgs; [xinit xscreensaver];
   
+  # Dbus and Zsh
+  programs = {
+    dconf.enable = true;
+    programs.zsh.enable = true;
+  };
+
   # ZSH default
-  programs.zsh.enable = true;
   users.defaultUserShell = pkgs.zsh;
 
   # See man configuration.nix or https://nixos.org/nixos/options.html

@@ -5,6 +5,7 @@
     ./app/neovim.nix
     ./app/rofi.nix
     ./app/ncspot.nix
+    ./app/xmobar.nix
     ./app/xmonad.nix
   ];
 
@@ -36,6 +37,7 @@
       obs-studio
       steam
       osu-lazer-bin
+      xmobar
       # Fonts, you maybe want these
       jetbrains-mono
       nerd-fonts.jetbrains-mono

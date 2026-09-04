@@ -38,10 +38,5 @@ imap <silent><expr> jk luasnip#expand_or_jumpable() ? '<Plug>luasnip-expand-or-j
 vim.cmd [[
 smap <silent><expr> jk luasnip#jumpable(1) ? '<Plug>luasnip-jump-next' : 'jk'
 ]]
--- Telescope
-local builtin = require('telescope.builtin')
-vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
-vim.keymap.set('n', '<leader>fg', builtin.git_files, {})
-vim.keymap.set('n', '<leader>gg', builtin.live_grep, {})
 -- Undotree
 vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle)
