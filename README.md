@@ -11,7 +11,6 @@ dotfiles/
 ├── user/
 │   ├── app/
 │   │   ├── xmonad/
-│   │   │   ├── xmobar.hs
 │   │   │   └── xmonad.hs
 │   │   ├── nvim/
 │   │   │   ├── ...
@@ -23,6 +22,7 @@ dotfiles/
 │   │   ├── starship.toml
 │   │   ├── xmobar.nix
 │   │   ├── xmonad.nix
+│   │   ├── zathura.nix 
 │   │   └── zsh.nix
 │   ├── home.nix
 │   └── identity.nix

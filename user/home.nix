@@ -7,6 +7,7 @@
     ./app/ncspot.nix
     ./app/xmobar.nix
     ./app/xmonad.nix
+    ./app/zathura.nix
   ];
 
   # Allow unfree packages
@@ -28,6 +29,7 @@
       fastfetch
       ripgrep
       fd
+      ffmpeg
       # Other apps, you maybe want these
       firefox
       equibop
