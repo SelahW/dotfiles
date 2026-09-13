@@ -40,12 +40,15 @@
       steam
       osu-lazer-bin
       xmobar
-      # Fonts, you maybe want these
-      jetbrains-mono
+      # Fonts, you maybe want these / feel free to add your own
       nerd-fonts.jetbrains-mono
-      iosevka
       nerd-fonts.iosevka-term
       nerd-fonts.go-mono
+      nerd-fonts.victor-mono
+      nerd-fonts.caskaydia-cove
+      nerd-fonts.fantasque-sans-mono
+      inter
+      noto-fonts
     ];
     username = identity.username;
     homeDirectory = "/${identity.homeDir}${identity.username}";
@@ -61,9 +64,9 @@
   fonts.fontconfig = {
     enable = true;
     defaultFonts = {
-      monospace = ["IosevkaTerm Nerd Font Medium"];
-      sansSerif = ["Iosevka Aile"];
-      serif = ["Iosevka Etoile"];
+      monospace = ["FantasqueSansM Nerd Font"];
+      sansSerif = ["Inter"];
+      serif = ["Noto Serif"];
     };
   };
   programs.git.enable = true;

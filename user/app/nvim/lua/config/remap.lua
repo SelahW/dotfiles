@@ -7,7 +7,7 @@ vim.keymap.set("n", "<C-d>", "<C-d>zz")
 vim.keymap.set("n", "<C-u>", "<C-u>zz")
 vim.keymap.set("n", "n", "nzzzv")
 vim.keymap.set("n", "N", "Nzzzv")
-vim.keymap.set("n", "<leader>gs", vim.cmd.Git)
+vim.keymap.set("n", "<leader>G", vim.cmd.Git)
 -- Open terminal in split buffer
 vim.keymap.set("n", "<leader>t", "<cmd>vsplit<CR><C-w>l<cmd>terminal<CR>i")
 -- Paste without overwriting register
@@ -21,7 +21,7 @@ vim.keymap.set({ "n", "v" }, "<leader>d", [["_d]])
 -- Unbind Q
 vim.keymap.set("n", "Q", "<nop>")
 -- Format buffer depending on lsp
-vim.keymap.set("n", "<leader>f", vim.lsp.buf.format)
+vim.keymap.set("n", "<leader>=", vim.lsp.buf.format)
 -- Move up/down list entries
 vim.keymap.set("n", "<leader>k", "<cmd>lnext<CR>zz")
 vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz")
@@ -31,6 +31,9 @@ vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><
 vim.keymap.set("n", "<leader><leader>", function()
     vim.cmd("so")
 end)
+-- Mini.pick binds
+vim.keymap.set("n", "<leader>f", "<cmd>Pick files<CR>")
+vim.keymap.set("n", "<leader>g", "<cmd>Pick grep_live<CR>")
 -- Map jk to expand or jump through snippets
 vim.cmd [[
 imap <silent><expr> jk luasnip#expand_or_jumpable() ? '<Plug>luasnip-expand-or-jump' : 'jk'
