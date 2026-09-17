@@ -1,8 +1,8 @@
 {
-  username = "theo";
-  architecture = "x86_64-linux";
-  homeDir = "home/";
+  username = "";
+  architecture = "";
+  homeDir = "";
   isLaptop = true;
-  batteryID = "BAT1";
-  distro = "arch";
+  batteryID = "";
+  distro = "";
 }

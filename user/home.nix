@@ -1,10 +1,14 @@
-{pkgs, ...}: let identity = import ./identity.nix; in {
+{ pkgs, inputs, ... }:
+let
+  identity = import ./identity.nix;
+  spicePkgs = inputs.spicetify-nix.legacyPackages.${pkgs.system};
+in
+{
   imports = [
     ./app/zsh.nix
     ./app/ghostty.nix
     ./app/neovim.nix
     ./app/rofi.nix
-    ./app/ncspot.nix
     ./app/xmobar.nix
     ./app/xmonad.nix
     ./app/zathura.nix
@@ -12,7 +16,7 @@
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
-  
+
   targets.genericLinux.enable = true;
   home = {
     packages = with pkgs; [
@@ -34,9 +38,7 @@
       firefox
       equibop
       feh
-      ncspot
       vlc
-      obs-studio
       steam
       osu-lazer-bin
       xmobar
@@ -64,15 +66,24 @@
   fonts.fontconfig = {
     enable = true;
     defaultFonts = {
-      monospace = ["FantasqueSansM Nerd Font"];
-      sansSerif = ["Inter"];
-      serif = ["Noto Serif"];
+      monospace = [ "FantasqueSansM Nerd Font" ];
+      sansSerif = [ "Inter" ];
+      serif = [ "Noto Serif" ];
     };
   };
-  programs.git.enable = true;
-  dconf.settings= {
-    "org/gnome/desktop/interface" = {
-     color-scheme = "prefer-dark";
+  dconf.settings = { "org/gnome/desktop/interface" = { color-scheme = "prefer-dark"; };
+  };
+  programs = {
+    git.enable = true;
+    obs-studio = {
+      enable = true;
+      plugins = with pkgs.obs-studio-plugins; [ obs-pipewire-audio-capture ];
+    };
+    spicetify = {
+      enable = true;
+      enabledExtensions = with spicePkgs.extensions; [ shuffle ];
+      theme = spicePkgs.themes.text;
+      colorScheme = "EverforestDarkHard";
     };
   };
   home.stateVersion = "26.05";

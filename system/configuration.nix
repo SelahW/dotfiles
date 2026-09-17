@@ -100,7 +100,7 @@
   # Dbus and Zsh
   programs = {
     dconf.enable = true;
-    programs.zsh.enable = true;
+    zsh.enable = true;
   };
 
   # ZSH default

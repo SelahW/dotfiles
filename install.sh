@@ -12,7 +12,7 @@ if [[ "$(uname)" == "Linux" ]]; then
     HOMEDIR="home/"
     COMMAND="nix run github:nix-community/home-manager -- switch --flake .#dotfiles-linux"
     if [ -f /etc/os-release ]; then
-        DISTRO=$(grep -m 1 "ID=" /etc/os-release | cut -d"=" -f2-)
+        DISTRO=$(grep -m 1 "^ID=" /etc/os-release | cut -d"=" -f2-)
     else
         DISTRO="linux"
     fi

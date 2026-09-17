@@ -2,7 +2,7 @@
   let 
     identity = import ../identity.nix;
     logos = {
-      nixos = " ";
+      nixos = "  ";
       arch = "󰣇 ";
       ubuntu = " ";
       debian = " ";
