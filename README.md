@@ -20,6 +20,7 @@ dotfiles/
 │   │   ├── neovim.nix
 │   │   ├── rofi.nix
 │   │   ├── starship.toml
+│   │   ├── tex.nix
 │   │   ├── xmobar.nix
 │   │   ├── xmonad.nix
 │   │   ├── zathura.nix 

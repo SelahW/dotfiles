@@ -2,6 +2,7 @@
 let
   identity = import ./identity.nix;
   spicePkgs = inputs.spicetify-nix.legacyPackages.${pkgs.system};
+  tex = import ./app/tex.nix pkgs;
 in
 {
   imports = [
@@ -42,6 +43,7 @@ in
       steam
       osu-lazer-bin
       xmobar
+      tex
       # Fonts, you maybe want these / feel free to add your own
       nerd-fonts.jetbrains-mono
       nerd-fonts.iosevka-term

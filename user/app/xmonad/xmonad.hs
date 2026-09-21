@@ -37,7 +37,7 @@ myConfig = def
     , layoutHook = myLayout
     } `additionalKeysP`
     [ ("M-<Delete>", spawn "xscreensaver-command -lock")
-    , ("<XF86AudioRaiseVolume>", spawn "wpctl set-volume @DEFAULT_SINK@ 5%+")
+    , ("<XF86AudioRaiseVolume>", spawn "wpctl set-volume -l 1.0 @DEFAULT_SINK@ 5%+")
     , ("<XF86AudioLowerVolume>", spawn "wpctl set-volume @DEFAULT_SINK@ 5%-")
     , ("<XF86AudioMute>", spawn "wpctl set-mute @DEFAULT_SINK@ toggle")
     , ("M-q",        kill)
