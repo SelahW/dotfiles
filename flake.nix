@@ -2,6 +2,7 @@
   description = "My System Flake";
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-26.05";
+    nixos-hardware.url = "github:nixos/nixos-hardware/master";
     spicetify-nix.url = "github:Gerg-L/spicetify-nix";
     home-manager = {
       url = "github:nix-community/home-manager/release-26.05";
@@ -9,7 +10,7 @@
     };
   };
 
-  outputs = { nixpkgs, home-manager, spicetify-nix, ... }@inputs:
+  outputs = { nixpkgs, nixos-hardware, home-manager, spicetify-nix, ... }@inputs:
     {
       nixosConfigurations = {
         theo-desktop = nixpkgs.lib.nixosSystem {
@@ -29,9 +30,10 @@
         pihole-server = nixpkgs.lib.nixosSystem {
           system = "aarch64-linux";
           modules = [
+            nixos-hardware.nixosModules.raspberry-pi-3
             ./systems/pihole/configuration.nix
-          ]
-            };
+          ];
+        };
       };
       homeConfigurations = {
         "dotfiles-linux" = home-manager.lib.homeManagerConfiguration {

@@ -1,16 +1,22 @@
 {config, lib, pkgs, ...}: {
   imports = [
-  ./hardware-configuration.nix
+    ./hardware-configuration.nix
   ];
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   boot = {
     loader.grub.enable = false;
     loader.generic-extlinux-compatible.enable = true;
-    kernelPackages = pkgs.linuxKernel.packages.linux_rpi3;
   }; 
 
   networking = {
     hostName = "TheoPi";
+    useDHCP = false;
+    interfaces.enu1u1.useDHCP = false;
+    interfaces.enu1u1.ipv4.addresses = [{
+        address = "192.168.1.57";
+        prefixLength = 24;
+    }];
+    defaultGateway = "192.168.1.1";
     networkmanager.enable = true;
     firewall.allowedTCPPorts = [ 22 53 80 ];
     firewall.allowedUDPPorts = [ 53 ];
