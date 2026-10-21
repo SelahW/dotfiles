@@ -25,6 +25,10 @@
     enable = true;
     settings.PermitRootLogin = "yes";
   };
+  services.pihole = {
+    enable = true;
+    upstreams = [ "1.1.1.1" "1.0.0.1" ];
+  };
   environment.systemPackages = with pkgs; [ vim git curl ];
   users.users.root.initialPassword = "nixos";
   time.timeZone = "America/Chicago";
