@@ -25,10 +25,11 @@
     enable = true;
     settings.PermitRootLogin = "yes";
   };
-  services.pihole = {
+  services.pihole-ftl = {
     enable = true;
-    upstreams = [ "1.1.1.1" "1.0.0.1" ];
+    settings."dns.upstreams" = [ "1.1.1.1" "1.0.0.1" ];
   };
+  services.pihole-web.enable = true;
   environment.systemPackages = with pkgs; [ vim git curl ];
   users.users.root.initialPassword = "nixos";
   time.timeZone = "America/Chicago";
