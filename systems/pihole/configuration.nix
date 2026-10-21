@@ -24,7 +24,7 @@
   };
   services.openssh = {
     enable = true;
-    settings.PermitRootLogin = "yes";
+    settings.PermitRootLogin = "no";
   };
   services.pihole-ftl = {
     enable = true;
@@ -32,7 +32,10 @@
   };
   services.pihole-web.enable = true;
   environment.systemPackages = with pkgs; [ vim git curl ];
-  users.users.root.initialPassword = "nixos";
+  users.users.theo = {
+    isNormalUser = true;
+    extraGroups = [ "networkmanager" "wheel" ];
+  };
   time.timeZone = "America/Chicago";
   i18n.defaultLocale = "en_US.UTF-8";
   i18n.extraLocaleSettings = {
