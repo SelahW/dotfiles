@@ -4,10 +4,14 @@ Managed by [nix flakes](https://wiki.nixos.org/wiki/Flakes).
 ## File Tree:
 ```
 dotfiles/
-├── system/
-│   ├── configuration.nix
-│   ├── hardware-configuration.nix
-│   └── mount-hdd.nix
+├── systems/
+│   ├── desktop/
+│   │   ├── configuration.nix
+│   │   ├── hardware-configuration.nix
+│   │   └── mount-hdd.nix
+│   └── pihole/
+│       ├── configuration.nix
+│       └── hardware-configuration.nix
 ├── user/
 │   ├── app/
 │   │   ├── xmonad/
