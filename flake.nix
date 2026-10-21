@@ -15,8 +15,8 @@
         theo-desktop = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
           modules = [
-            ./system/configuration.nix
-            ./system/mount-hdd.nix
+            ./systems/desktop/configuration.nix
+            ./systems/desktop/mount-hdd.nix
             home-manager.nixosModules.home-manager
             {
               home-manager.useUserPackages = true;
@@ -26,6 +26,12 @@
             }
           ];
         };
+        pihole-server = nixpkgs.lib.nixosSystem {
+          system = "aarch64-linux";
+          modules = [
+            ./systems/pihole/configuration.nix
+          ]
+            };
       };
       homeConfigurations = {
         "dotfiles-linux" = home-manager.lib.homeManagerConfiguration {
