@@ -18,9 +18,12 @@
         prefixLength = 24;
     }];
     defaultGateway = "192.168.1.1";
-    networkmanager.enable = true;
-    firewall.allowedTCPPorts = [ 22 53 80 ];
-    firewall.allowedUDPPorts = [ 53 ];
+    nameservers = [ "1.1.1.1" ];
+    firewall = {
+      enable = true;
+      allowedTCPPorts = [ 22 53 80 ];
+      allowedUDPPorts = [ 53 ];
+    };
   };
   services.openssh = {
     enable = true;
@@ -28,9 +31,26 @@
   };
   services.pihole-ftl = {
     enable = true;
-    settings."dns.upstreams" = [ "1.1.1.1" "1.0.0.1" ];
+    settings = {
+      dns = {
+        upstreams = [ "9.9.9.9" "1.4.1.4" ];
+        domainNeeded = true;
+        bogusPriv = true;
+        dnssec = true;
+      };
+      privacy.level = 0;
+      webserver.api.password = "password123"; # Change this
+    };
+    lists = [{
+      url = "https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts";
+      type = "block";
+      enabled = true;
+    }];
   };
-  services.pihole-web.enable = true;
+  services.pihole-web = {
+    enable = true;
+    ports = [ "80" ];
+  };
   environment.systemPackages = with pkgs; [ vim git curl ];
   users.users.theo = {
     isNormalUser = true;

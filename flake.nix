@@ -27,7 +27,7 @@
             }
           ];
         };
-        pihole-server = nixpkgs.lib.nixosSystem {
+        theo-rpi = nixpkgs.lib.nixosSystem {
           system = "aarch64-linux";
           modules = [
             nixos-hardware.nixosModules.raspberry-pi-3
